@@ -1,0 +1,41 @@
+﻿@model List<App1.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h1>My Website</h1>
+<h1>@ViewBag.Name</h1>
+@foreach (var std in Model)
+{
+    <h1>@std.Id _ @std.Name</h1>
+}
+@ViewBag.Name
+@{ 
+    string name1 = "Oday1";
+    string name2 = "Oday2";
+    <h1>name1 :@name1 _ name2:@name2</h1>
+    <h1>Oday@(name1)</h1>
+}
+<h1>@name1 _ @name2</h1>
+
+@helper Sum(int num1,int num2) { 
+@(num1 + num2);
+    }
+<h2>@Sum(2,4)</h2>
+@*My Code*@
+@if (name1=="Oday")
+{
+    <h1>Yes</h1>
+}
+else
+{
+    <h1>No</h1>
+    @:This Text
+}
+@for (int i = 0; i < 10; i++)
+{
+    <h1>@i</h1>
+}
+
+
