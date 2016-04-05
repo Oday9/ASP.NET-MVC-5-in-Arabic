@@ -1,0 +1,15 @@
+﻿@model App3.Models.Product
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@{
+    var attributes=new Dictionary<string,object>();
+    attributes.Add("Id","myFrom");
+    attributes.Add("Calss", "myFrom2");
+}
+@using (Html.BeginForm("Index", "Products", null, FormMethod.Post, attributes))
+{
+    
+}

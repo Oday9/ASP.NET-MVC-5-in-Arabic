@@ -1,0 +1,47 @@
+﻿@model IEnumerable<App2.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New 2", "Create", new RouteValueDictionary(new { Price1 = 100, Price2 = 200, Price3 = 300 }))
+    @{
+        var myDictionary = new Dictionary<string, Object>();
+        myDictionary.Add("Add Name", "Ahmad");
+        myDictionary.Add("Add Date", DateTime.Now);
+    }
+    @Html.ActionLink("Create New 3", "Create", new RouteValueDictionary(myDictionary))
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId, Price2 = 300 }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
