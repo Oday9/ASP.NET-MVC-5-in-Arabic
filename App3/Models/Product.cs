@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace App3.Models
 {
+ 
     public class Products
     {
         public List<Product> GetProducts()
@@ -19,9 +21,11 @@ namespace App3.Models
             return products;
         }
     }
+    [DisplayName("المنتجات")]
     public class Product
     {
         public int Id { get; set; }
+        [DisplayName("الاسم")]
         public string Name { get; set; }
         public int YearProduction { get; set; }
         public decimal Price { get; set; }

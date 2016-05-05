@@ -4,12 +4,48 @@
 }
 
 <h2>Index</h2>
+
 @{
     var attributes=new Dictionary<string,object>();
     attributes.Add("Id","myFrom");
     attributes.Add("Calss", "myFrom2");
 }
-@using (Html.BeginForm("Index", "Products", null, FormMethod.Post, attributes))
+@Html.LabelForModel()
+@using (Html.BeginForm("AddProduct", "Products", null, FormMethod.Post, attributes))
 {
-    
+    <div>
+        @Html.Label("Nam")
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name,new { @class="from-control"})
+        @Html.EditorFor(p=>p.YearProduction)
+        @Html.EditorForModel()
+        @Html.DropDownListFor(p=>p.YearProduction,new SelectList(new List<Object> { new {text=2013 }, new { text = 2014 }, new { text = 2015 }, new { text = 2016 } },"text","text",2015),"Selcet one ...")
+        @Html.EnumDropDownListFor(p=>p.Type,"select one ..")
+    </div>
+    <div class="form-group">
+        @Html.ListBoxFor(p=>p.Category, (List<SelectListItem>)ViewBag.Categories,new { @class = "from-control" })
+    </div>
+    <div class="checkbox">
+        @Html.LabelFor(p=>p.InStock)
+        @Html.CheckBoxFor(p=>p.InStock)
+    </div>
+  <div>
+      @Html.RadioButtonFor(p=>p.Availability,App3.Models.Availability.Delivery,new {@GroupName="Group1"})
+      <label for="@App3.Models.Availability.Delivery">@App3.Models.Availability.Delivery</label>
+
+      @Html.RadioButtonFor(p => p.Availability, App3.Models.Availability.Pickup, new { @GroupName = "Group1" })
+      <label for="@App3.Models.Availability.Pickup">@App3.Models.Availability.Pickup</label>
+
+      @Html.RadioButtonFor(p => p.Availability, App3.Models.Availability.Reseller, new { @checked = true, @GroupName = "Group1" })
+      <label for="@App3.Models.Availability.Reseller">@App3.Models.Availability.Reseller</label>
+  </div>
+  <div class="form-group">
+      @Html.LabelFor(p=>p.Description)
+      @Html.TextAreaFor(p=>p.Description,4,30,new { @class="form-control"})
+  </div>
+  <div class="form-group">
+      <input type="submit" value="Create" class="btn btn-success"/>
+  </div>
 }
