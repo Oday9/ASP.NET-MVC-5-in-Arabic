@@ -26,7 +26,9 @@ namespace App3.Models
     {
         public int Id { get; set; }
         [DisplayName("الاسم")]
+        [Required(ErrorMessage ="ادخل الاسم")]
         public string Name { get; set; }
+        [Range(2010,2016)]
         public int YearProduction { get; set; }
         public decimal Price { get; set; }
         public bool InStock { get; set; }
@@ -35,6 +37,9 @@ namespace App3.Models
         public string Category { get; set; }
 
         public Type Type { get; set; }
+        //[MaxLength(200)]
+        //[MinLength(2)]
+        [StringLength(200,MinimumLength =2)]
         public string Description { get; set; }
     }
 

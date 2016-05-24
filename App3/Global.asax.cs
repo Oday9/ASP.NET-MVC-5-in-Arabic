@@ -11,6 +11,7 @@ namespace App3
     {
         protected void Application_Start()
         {
+            HtmlHelper.ClientValidationEnabled = false;
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

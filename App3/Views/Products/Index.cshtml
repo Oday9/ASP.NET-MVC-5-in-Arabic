@@ -1,6 +1,7 @@
 ﻿@model App3.Models.Product
 @{
     ViewBag.Title = "Index";
+    Html.EnableClientValidation(false);
 }
 
 <h2>Index</h2>
@@ -9,23 +10,32 @@
     var attributes=new Dictionary<string,object>();
     attributes.Add("Id","myFrom");
     attributes.Add("Calss", "myFrom2");
+
+    var categories = new List<SelectListItem> {
+                new SelectListItem { Text = "A 1", Value = "P1",Disabled=true,Group=new SelectListGroup { Name="B"}},
+                new SelectListItem { Text = "A 2", Value = "P10",Selected=true,Group=new SelectListGroup { Name="A"} },
+                new SelectListItem { Text = "A 3", Value = "P12",Group=new SelectListGroup { Name="A"} },
+                new SelectListItem { Text = "A 4", Value = "P" ,Group=new SelectListGroup { Name="B"}}
+            };
 }
 @Html.LabelForModel()
-@using (Html.BeginForm("AddProduct", "Products", null, FormMethod.Post, attributes))
+@using (Html.BeginForm(attributes))
 {
+    @Html.ValidationSummary(true)
     <div>
         @Html.Label("Nam")
     </div>
     <div class="form-group">
         @Html.LabelFor(p => p.Name)
         @Html.TextBoxFor(p => p.Name,new { @class="from-control"})
+        @Html.ValidationMessageFor(p => p.Name, "",new {@class="text-danger" })
         @Html.EditorFor(p=>p.YearProduction)
-        @Html.EditorForModel()
+        @*@Html.EditorForModel()*@
         @Html.DropDownListFor(p=>p.YearProduction,new SelectList(new List<Object> { new {text=2013 }, new { text = 2014 }, new { text = 2015 }, new { text = 2016 } },"text","text",2015),"Selcet one ...")
         @Html.EnumDropDownListFor(p=>p.Type,"select one ..")
     </div>
     <div class="form-group">
-        @Html.ListBoxFor(p=>p.Category, (List<SelectListItem>)ViewBag.Categories,new { @class = "from-control" })
+        @Html.ListBoxFor(p=>p.Category, categories, new { @class = "from-control" })
     </div>
     <div class="checkbox">
         @Html.LabelFor(p=>p.InStock)
@@ -49,3 +59,6 @@
       <input type="submit" value="Create" class="btn btn-success"/>
   </div>
 }
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
