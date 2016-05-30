@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Student";
+
+    var student = new List<string>();
+    student.Add("Oday 1");
+    student.Add("Oday 2");
+
+    var student2 = new List<string>();
+    student2.Add("Oday 1 1");
+    student2.Add("Oday 2 2");
+}
+
+<h2>Student</h2>
+@RenderPage("~/Views/Shared/_Top.cshtml", student, student2)

@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Teacher";
+
+    var teacher = new List<string>();
+    teacher.Add("Ahmad 1");
+    teacher.Add("Ahmad 2");
+}
+
+<h2>Teacher</h2>
+@RenderPage("~/Views/Shared/_Top.cshtml",teacher)
